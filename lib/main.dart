@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:git/consts.dart';
+import 'package:git/home.dart';
 
-void main() {
+void main() async {
+  await _setup();
   runApp(const MainApp());
+}
+
+Future<void> _setup() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  Stripe.publishableKey = stripepublishkey;
 }
 
 class MainApp extends StatelessWidget {
@@ -10,11 +19,6 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!sdfsdhjgfsdkjfjkdsfjkdsfjdshjfkhsdfsdhfksd'),
-        ),
-      ),
-    );
+        debugShowCheckedModeBanner: false, home: HomePage());
   }
 }
